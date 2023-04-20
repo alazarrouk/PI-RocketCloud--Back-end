@@ -20,7 +20,7 @@ public class Recette implements Serializable {
     private String image;
     @Column(name="description")
     private String description;
-    @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany(cascade = CascadeType.MERGE)
     private Set<Ingredient> ingredients;
 
     public Recette() {
