@@ -60,11 +60,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
     </dependencies>
 
     <build>
