@@ -24,6 +24,7 @@ public class Reservation implements Serializable {
     @ManyToOne
     private User user;
     @ManyToOne
+    @JsonIgnore
     private Restaurant restaurant;
 
     public Reservation() {
