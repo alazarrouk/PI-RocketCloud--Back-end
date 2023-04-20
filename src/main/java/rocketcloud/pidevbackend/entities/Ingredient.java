@@ -17,5 +17,12 @@ public class Ingredient implements Serializable {
     @Column(name="nom")
     private String nom;
 
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 70ad24d9801166baf3b68e14b074a1cc24847187
+>>>>>>> Stashed changes
 }
