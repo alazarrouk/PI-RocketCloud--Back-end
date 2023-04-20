@@ -17,7 +17,5 @@ public class Ingredient implements Serializable {
     @Column(name="nom")
     private String nom;
 
-    @Column(nullable = true)
-    @ManyToMany(mappedBy="ingredients", cascade = CascadeType.ALL) //bidirectionnelle
-    private Set<Recette> recettes;
+
 }
