@@ -55,6 +55,7 @@ public class ProduitServiceImp implements IProduitServiceImp {
         }
     }
 
+
     public void deleteProduit(Produit produit) {
         produitRepository.delete(produit);
     }

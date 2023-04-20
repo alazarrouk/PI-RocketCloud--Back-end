@@ -36,6 +36,12 @@ public class Categorie implements Serializable {
         this.produits = produits;
     }
 
+    public Categorie(int idCategorie, String nomCategorie, String imageUrl) {
+        this.idCategorie = idCategorie;
+        this.nomCategorie = nomCategorie;
+        this.imageUrl = imageUrl;
+    }
+
     public int getIdCategorie() {
         return idCategorie;
     }

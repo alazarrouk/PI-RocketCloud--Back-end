@@ -30,4 +30,23 @@ public class CategorieServiceImp implements ICategorieServiceImp {
     public Categorie getCategorie(int idCategorie) {
         return categorieRepository.findById(idCategorie).get();
     }
+
+
+    @Override
+    public Categorie getCategorieById(int idCategorie)  {
+        return categorieRepository.findById(idCategorie).get();
+
+    }
+
+
+    /*@Override
+    public Categorie getCategorieById(int idCategorie) {
+        Optional<Categorie> categorieOptional = categorieRepository.findById(idCategorie);
+        if (categorieOptional.isPresent()) {
+            return categorieOptional.get();
+        } else {
+            throw new EntityNotFoundException("Categorie not found with id: " + idCategorie);
+        }
+    }*/
+
 }
