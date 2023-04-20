@@ -22,6 +22,7 @@ public class Plat implements Serializable {
     @Column(name="description_plat")
     private String description_plat;
     @ManyToOne
+    @JsonIgnore
     Restaurant restaurant;
 
     public Plat() {
