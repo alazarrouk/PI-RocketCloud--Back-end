@@ -1,8 +1,6 @@
 package rocketcloud.pidevbackend.entities;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,12 +21,8 @@ public class Reservation implements Serializable {
     private Date date_reservation;
     @Column(name="nb_places")
     private int nb_places;
-    @JsonIgnore
-
     @ManyToOne
     private User user;
-    @JsonIgnore
-
     @ManyToOne
     private Restaurant restaurant;
 
@@ -42,13 +36,6 @@ public class Reservation implements Serializable {
         this.user = user;
         this.restaurant = restaurant;
     }
-    public Reservation(int id_reservation, Date date_reservation, int nb_places) {
-        this.id_reservation = id_reservation;
-        this.date_reservation = date_reservation;
-        this.nb_places = nb_places;
-
-    }
-
 
     public int getId_reservation() {
         return id_reservation;
