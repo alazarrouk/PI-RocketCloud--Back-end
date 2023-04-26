@@ -1,9 +1,6 @@
 package rocketcloud.pidevbackend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -11,12 +8,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(	name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")
-        })
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(	name = "users",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class User {
 
     @Id
@@ -26,17 +20,24 @@ public class User {
     @NotBlank
     @Size(max = 20)
     private String username;
-    @NotBlank
+
+    public String getFullname() {
+        return Fullname;
+    }
+
+    public void setFullname(String fullname) {
+        Fullname = fullname;
+    }
+
     @Size(max = 20)
     private String Fullname;
-
-    @NotBlank
     @Size(max = 20)
-    private String Adresse;
+    private String adresse;
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
+
     @NotBlank
     @Size(max = 120)
     private String password;
@@ -44,13 +45,40 @@ public class User {
     boolean verified=false;
     private String resetpasswordcode;
 
+    public String getResetpasswordcode() {
+        return resetpasswordcode;
+    }
+
+
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        adresse = adresse;
+    }
+
+    public void setResetpasswordcode(String resetpasswordcode) {
+        this.resetpasswordcode = resetpasswordcode;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    //vendeur
+    public User() {
+    }
     @Column(nullable = true)
     @OneToMany(cascade = CascadeType.ALL) //unidirictionnelle
     private Set<Produit> produits;
@@ -80,13 +108,58 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL) //unidirictionnelle
     private Set<Recette> recettes;
 
-    public User() {
-    }
-
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public Set<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(Set<Produit> produits) {
+        this.produits = produits;
+    }
+
+    public Set<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(Set<Commande> commandes) {
+        this.commandes = commandes;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Set<Reclamation> getReclamations() {
+        return reclamations;
+    }
+
+    public void setReclamations(Set<Reclamation> reclamations) {
+        this.reclamations = reclamations;
+    }
+
+    public Set<Don> getDons() {
+        return dons;
+    }
+
+    public void setDons(Set<Don> dons) {
+        this.dons = dons;
+    }
+
+    public Set<Recette> getRecettes() {
+        return recettes;
+    }
+
+    public void setRecettes(Set<Recette> recettes) {
+        this.recettes = recettes;
     }
 
     public Long getId() {
@@ -136,23 +209,4 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-    public String getResetpasswordcode() {
-        return resetpasswordcode;
-    }
-
-    public void setResetpasswordcode(String resetpasswordcode) {
-        this.resetpasswordcode = resetpasswordcode;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
-
-
 }

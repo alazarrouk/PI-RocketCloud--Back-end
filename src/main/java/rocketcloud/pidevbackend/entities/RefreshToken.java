@@ -1,8 +1,6 @@
 package rocketcloud.pidevbackend.entities;
 
-
 import javax.persistence.*;
-
 import java.time.Instant;
 
 @Entity(name = "refreshtoken")
