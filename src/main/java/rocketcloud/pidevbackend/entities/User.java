@@ -1,5 +1,8 @@
 package rocketcloud.pidevbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -91,6 +94,7 @@ public class User {
     //client
     @Column(nullable = true)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //Bidirictionnelle
+    @JsonIgnore
     private Set<Reservation> reservations;
 
     //client
