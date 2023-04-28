@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Commande;
 import rocketcloud.pidevbackend.entities.User;
 import rocketcloud.pidevbackend.repositories.CommandeRepository;
-import rocketcloud.pidevbackend.services.Interfaces.ICommande;
+import rocketcloud.pidevbackend.services.interfaces.ICommande;
 
 import java.util.Date;
 import java.util.List;

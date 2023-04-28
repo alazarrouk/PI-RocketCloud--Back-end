@@ -21,9 +21,9 @@ public class Paiement implements Serializable {
     @Column(name = "num_carte")
     private String num_carte;
     @Column(name = "exp_mois")
-    private String exp_mois;
+    private int exp_mois;
     @Column(name = "exp_annee")
-    private String exp_annee;
+    private int exp_annee;
     @Column(name = "cvc")
     private int cvc;
     @Column(name = "montant")
@@ -34,7 +34,7 @@ public class Paiement implements Serializable {
     public Paiement() {
     }
 
-    public Paiement(int id_paiement, Date date, String nom_carte, String num_carte, String exp_mois, String exp_annee, int cvc, float montant, String paymentIntent_id) {
+    public Paiement(int id_paiement, Date date, String nom_carte, String num_carte, int exp_mois, int exp_annee, int cvc, float montant, String paymentIntent_id) {
         this.id_paiement = id_paiement;
         this.date = date;
         this.nom_carte = nom_carte;
@@ -78,19 +78,19 @@ public class Paiement implements Serializable {
         this.num_carte = num_carte;
     }
 
-    public String getExp_mois() {
+    public int getExp_mois() {
         return exp_mois;
     }
 
-    public void setExp_mois(String exp_mois) {
+    public void setExp_mois(int exp_mois) {
         this.exp_mois = exp_mois;
     }
 
-    public String getExp_annee() {
+    public int getExp_annee() {
         return exp_annee;
     }
 
-    public void setExp_annee(String exp_annee) {
+    public void setExp_annee(int exp_annee) {
         this.exp_annee = exp_annee;
     }
 

@@ -12,6 +12,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/commande")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CommandeController {
     @Autowired
     private CommandeService commandeService;

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Paiement;
 import rocketcloud.pidevbackend.repositories.PaiementRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IPaiement;
+import rocketcloud.pidevbackend.services.interfaces.IPaiement;
 
 import java.util.List;
 
