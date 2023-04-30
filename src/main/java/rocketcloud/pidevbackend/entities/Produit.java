@@ -23,128 +23,25 @@ public class Produit implements Serializable {
     private float prixActuel;
     @Column(name="prix_reduction")
     private float prixRreduction;
-    @Column(name="quantite")
     private int quantite;
     private String description;
+
     @Column(name="date_expiration")
-    private Date dateExpiration;
+    private String dateExpiration;
 
-   @ManyToOne(cascade=CascadeType.ALL)
-   @JoinColumn(name = "id_categorie")
-   private Categorie categorie;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_categorie")
+    private Categorie categorie;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_vendeur")
+    private Vendeur vendeur;
 
     public Produit() {
     }
 
-    public Produit(int idProduit, String nomProduit, String imageProduit, float prixActuel, float prixRreduction, int quantite, String description, Date dateExpiration, Categorie categorie, User user) {
-        this.idProduit = idProduit;
-        this.nomProduit = nomProduit;
-        this.imageProduit = imageProduit;
-        this.prixActuel = prixActuel;
-        this.prixRreduction = prixRreduction;
-        this.quantite = quantite;
-        this.description = description;
-        this.dateExpiration = dateExpiration;
-        this.categorie = categorie;
-        this.user = user;
-    }
 
-    public int getIdProduit() {
-        return idProduit;
-    }
 
-    public void setIdProduit(int idProduit) {
-        this.idProduit = idProduit;
-    }
 
-    public String getNomProduit() {
-        return nomProduit;
-    }
 
-    public void setNomProduit(String nomProduit) {
-        this.nomProduit = nomProduit;
-    }
-
-    public String getImageProduit() {
-        return imageProduit;
-    }
-
-    public void setImageProduit(String imageProduit) {
-        this.imageProduit = imageProduit;
-    }
-
-    public float getPrixActuel() {
-        return prixActuel;
-    }
-
-    public void setPrixActuel(float prixActuel) {
-        this.prixActuel = prixActuel;
-    }
-
-    public float getPrixRreduction() {
-        return prixRreduction;
-    }
-
-    public void setPrixRreduction(float prixRreduction) {
-        this.prixRreduction = prixRreduction;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDateExpiration() {
-        return dateExpiration;
-    }
-
-    public void setDateExpiration(Date dateExpiration) {
-        this.dateExpiration = dateExpiration;
-    }
-
-    public Categorie getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Produit{" +
-                "idProduit=" + idProduit +
-                ", nomProduit='" + nomProduit + '\'' +
-                ", imageProduit='" + imageProduit + '\'' +
-                ", prixActuel=" + prixActuel +
-                ", prixRreduction=" + prixRreduction +
-                ", quantite=" + quantite +
-                ", description='" + description + '\'' +
-                ", dateExpiration=" + dateExpiration +
-                ", categorie=" + categorie +
-                ", user=" + user +
-                '}';
-    }
 }

@@ -8,5 +8,6 @@ import rocketcloud.pidevbackend.entities.Categorie;
 @Repository
 public interface CategorieRepository extends CrudRepository<Categorie, Integer> {
     //public interface CategorieRepository extends JpaRepository<Categorie, Integer>
+    Categorie getCategorieByIdCategorie(int idCategorie);
 
 }
