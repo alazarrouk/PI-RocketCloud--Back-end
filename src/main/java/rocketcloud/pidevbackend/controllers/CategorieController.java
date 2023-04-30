@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
-import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
+import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;
