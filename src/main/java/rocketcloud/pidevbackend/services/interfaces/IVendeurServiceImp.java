@@ -1,4 +1,4 @@
-package rocketcloud.pidevbackend.services.interfaces;
+package rocketcloud.pidevbackend.services.Interfaces;
 
 import rocketcloud.pidevbackend.entities.Vendeur;
 

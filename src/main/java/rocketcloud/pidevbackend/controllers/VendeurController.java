@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/vendeur")
 public class VendeurController {
     @Autowired
-    private rocketcloud.pidevbackend.services.interfaces.IVendeurServiceImp iVendeurServiceImp;
+    private rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp iVendeurServiceImp;
     @Autowired
     private VendeurRepository vendeurRepository;
 
