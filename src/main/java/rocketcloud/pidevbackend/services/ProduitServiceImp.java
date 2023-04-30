@@ -7,9 +7,11 @@ import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.entities.Produit;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProduitServiceImp implements IProduitServiceImp {
@@ -20,9 +22,9 @@ public class ProduitServiceImp implements IProduitServiceImp {
     public Produit addProduit(Produit produit) {
         // Retrieve the Categorie entity from the database
 
-        Categorie categorie = categorieRepository.findById(produit.getCategorie().getIdCategorie()).orElse(null);
+        //  Categorie categorie = categorieRepository.findById(produit.getCategorie().getIdCategorie()).orElse(null);
         // Set the managed Categorie entity on the Produit entity
-        produit.setCategorie(categorie);
+        //produit.setCategorie(categorie);
         return produitRepository.save(produit);
     }
     public Produit updateProduit(int idProduit, Produit produit) {
@@ -65,8 +67,32 @@ public class ProduitServiceImp implements IProduitServiceImp {
         return listProduits;
     }
 
+    public List<Produit> getProduitsByCategorie(Categorie categorie) {
+        return produitRepository.findAllByCategorie(categorie);
+    }
+    @Override
+    public Produit getProduitById(int idProduit)  {
+        return produitRepository.findById(idProduit).get();
+
+    }
+
     public Produit getProduit(int idProduit) {
         System.out.println(produitRepository.findById(idProduit).get().getCategorie().getNomCategorie());
         return produitRepository.findById(idProduit).get();
+    }
+
+    @Override
+    public Map<String, Integer> getNombreProduitsParCategorie() {
+        Map<String, Integer> result = new HashMap<>();
+
+        List<Object[]> rows = produitRepository.countProduitsByCategorie();
+
+        for (Object[] row : rows) {
+            String nomCategorie = (String) row[0];
+            Long count = (Long) row[1];
+            result.put(nomCategorie, count.intValue());
+        }
+
+        return result;
     }
 }

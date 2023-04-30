@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
-import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,22 +27,18 @@ public class CategorieController {
 
     @Autowired
     private CategorieRepository categorieRepository;
-   //ajouter categorie
-    //@PostMapping("/add-Categorie")
-    //public Categorie addCategorie(@RequestBody Categorie categorie) {
-      //  return iCategorieServiceImp.addCategorie(categorie);
-    //}
-   @PostMapping("/add-Categorie")
-   public Categorie addCategorie(@RequestParam("file") MultipartFile file, @RequestParam("nomCategorie") String nomCategorie) throws IOException {
-       String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-       String uploadDir = "categorie-images/";
-       String filePath = uploadDir + fileName;
-       FileUploadUtil.saveFile(uploadDir, fileName, file);
-       Categorie categorie = new Categorie();
-       categorie.setNomCategorie(nomCategorie);
-       categorie.setImageUrl(filePath);
-       return iCategorieServiceImp.addCategorie(categorie);
-   }
+
+    @PostMapping("/add-Categorie")
+    public Categorie addCategorie(@RequestParam("file") MultipartFile file, @RequestParam("nomCategorie") String nomCategorie) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String uploadDir = "categorie-images/";
+        String filePath = uploadDir + fileName;
+        FileUploadUtil.saveFile(uploadDir, fileName, file);
+        Categorie categorie = new Categorie();
+        categorie.setNomCategorie(nomCategorie);
+        categorie.setImageUrl(filePath);
+        return iCategorieServiceImp.addCategorie(categorie);
+    }
     @GetMapping("/categories/{idCategorie}")
     public ResponseEntity<Categorie> getCategorie(@PathVariable int idCategorie) throws IOException {
         Categorie categorie = categorieRepository.findById(idCategorie).orElse(null);
@@ -94,11 +90,6 @@ public class CategorieController {
     }
 
 
-
-
-
-   
-
     //supprimer categorie
     @DeleteMapping("/{idCategorie}")
     @ResponseBody
@@ -127,7 +118,7 @@ public class CategorieController {
 
 
     //imaaaaaaaaaaaage
-    private static class FileUploadUtil {
+    static class FileUploadUtil {
 
         public static void saveFile(String uploadDir, String fileName,
                                     MultipartFile multipartFile) throws IOException {
