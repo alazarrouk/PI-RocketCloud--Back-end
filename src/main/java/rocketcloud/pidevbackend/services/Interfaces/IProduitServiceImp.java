@@ -1,6 +1,7 @@
 package rocketcloud.pidevbackend.services.Interfaces;
 
 
+import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.entities.Produit;
 
 import java.util.List;
