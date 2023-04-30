@@ -26,6 +26,7 @@ public class Plat implements Serializable {
     @JsonIgnore
 
     @ManyToOne
+   // @JsonIgnore
     Restaurant restaurant;
 
     public Plat() {

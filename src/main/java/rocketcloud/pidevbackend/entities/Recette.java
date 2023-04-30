@@ -20,15 +20,9 @@ public class Recette implements Serializable {
     private String image;
     @Column(name="description")
     private String description;
-<<<<<<< Updated upstream
+
     @ManyToMany(cascade = CascadeType.MERGE)
-=======
-<<<<<<< HEAD
-    @ManyToMany(cascade = CascadeType.MERGE)
-=======
-   @ManyToMany(cascade = CascadeType.MERGE)
->>>>>>> 70ad24d9801166baf3b68e14b074a1cc24847187
->>>>>>> Stashed changes
+
     private Set<Ingredient> ingredients;
 
     public Recette() {

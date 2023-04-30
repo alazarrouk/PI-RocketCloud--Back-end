@@ -8,7 +8,6 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="Paiements")
-
 public class Paiement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

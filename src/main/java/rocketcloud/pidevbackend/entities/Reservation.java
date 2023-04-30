@@ -30,6 +30,7 @@ public class Reservation implements Serializable {
     @JsonIgnore
 
     @ManyToOne
+   // @JsonIgnore
     private Restaurant restaurant;
 
     public Reservation() {
