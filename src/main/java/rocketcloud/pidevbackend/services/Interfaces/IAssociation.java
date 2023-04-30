@@ -17,4 +17,5 @@ public interface IAssociation {
     //retrieve
     List<Association> Get_Association();
     Association Get_Association(Integer id);
+     void modifierAssociation(Association A);
 }

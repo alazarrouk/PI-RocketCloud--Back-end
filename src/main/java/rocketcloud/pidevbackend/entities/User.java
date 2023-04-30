@@ -103,6 +103,7 @@ public class User {
     private Set<Reclamation> reclamations;
 
     //client
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(cascade = CascadeType.ALL) //Bidirictionnelle
     private Set<Don> dons;

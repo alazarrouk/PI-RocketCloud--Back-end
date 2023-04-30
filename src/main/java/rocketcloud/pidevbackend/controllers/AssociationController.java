@@ -34,4 +34,9 @@ public class AssociationController {
     {
         associationService.Update_Association(association);
     }
+    @PostMapping ("/modifierassociation")
+
+    public void modifierAssociation(@RequestBody Association A) {
+        associationService.modifierAssociation(A);
+    }
 }

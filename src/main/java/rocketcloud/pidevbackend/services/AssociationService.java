@@ -3,6 +3,7 @@ package rocketcloud.pidevbackend.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Association;
+import rocketcloud.pidevbackend.entities.Don;
 import rocketcloud.pidevbackend.repositories.AssociationRepository;
 import rocketcloud.pidevbackend.services.Interfaces.IAssociation;
 
@@ -18,7 +19,12 @@ public class AssociationService implements IAssociation {
 
     @Override
     public Association Update_Association(Association association) {
-        return associationRepository.save(association);
+        Association association1=associationRepository.findById(association.getId_association()).get();
+        for(Don don:association.getDons()){
+            association1.getDons().add(don);
+        }
+        System.out.println("ass"+association1);
+        return associationRepository.save(association1);
     }
 
     @Override
@@ -34,5 +40,10 @@ public class AssociationService implements IAssociation {
     @Override
     public Association Get_Association(Integer id) {
         return  associationRepository.findById(id).get();
+    }
+
+    @Override
+    public void modifierAssociation(Association association) {
+         associationRepository.save(association);
     }
 }

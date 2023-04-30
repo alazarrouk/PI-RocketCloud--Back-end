@@ -28,7 +28,7 @@ public class DonController {
     public void Delete_Don(@PathVariable("id") Integer id ) {
         donService.Delete_Don(id);
     }
-    @PostMapping("/modifierPiste")
+    @PostMapping("/modifierdon")
     public void updatePiste(@RequestBody Don don)
     {
         donService.Update_Don(don);
