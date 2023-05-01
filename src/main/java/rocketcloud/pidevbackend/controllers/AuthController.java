@@ -64,10 +64,11 @@ public class AuthController {
      * La réponse contient des données JWT et UserDetails
      * */
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
 
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                        loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -83,7 +84,9 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponse(jwt,
                 refreshToken.getToken(),
                 userDetails.getId(),
-                userDetails.getUsername()
+                userDetails.getAdresse(),
+                userDetails.getUsername(),
+                userDetails.getFullname()
                 , userDetails.getEmail()
                 , roles));
     }
@@ -94,7 +97,7 @@ public class AuthController {
      * */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest, HttpServletRequest request) {
-    	if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
 
@@ -102,38 +105,40 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        // Create new user's account
         User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),signUpRequest.getAdresse(),signUpRequest.getFullname());
+
 
         String strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         System.out.println(strRoles);
         switch (strRoles) {
-        case "admin":
-            Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(adminRole);
+            case "admin":
+                Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                        .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                roles.add(adminRole);
 
-            break;
-        case "vendeur":
-            Role modRole = roleRepository.findByName(ERole.ROLE_VENDEUR)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(modRole);
+                break;
+            case "vendeur":
+                Role modRole = roleRepository.findByName(ERole.ROLE_VENDEUR)
+                        .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                roles.add(modRole);
 
-            break;
-        default:
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-    }
+                break;
+            default:
+                Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                        .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                roles.add(userRole);
+        }
 
         user.setRoles(roles);
         String verificationCode= UUID.randomUUID().toString();
 
         user.setVerificationCode(verificationCode);
-        User u=userRepository.save(user);
         user.setAdresse(signUpRequest.getAdresse());
+        user.setFullname(signUpRequest.getFullname());
+        User u=userRepository.save(user);
+
         //Envoi de mail de confirmation avec le code de verification
         String appUrl = request.getScheme()+"://"+request.getServerName();
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -141,8 +146,8 @@ public class AuthController {
         mailMessage.setSubject("Inscription réussie");
         mailMessage.setText("Bonjour " + signUpRequest.getUsername() + ",\n\nVotre inscription sur notre site a été effectuée avec succès." +
                 " Pour vérifier votre compte, veuillez cliquer sur le lien suivant : "
-                 + "http://localhost:4200/#/authentication/verification/" + verificationCode);
-        
+                + "http://localhost:4200/#/authentication/verification/" + verificationCode);
+
         javaMailSender.send(mailMessage);
         //return ResponseEntity.ok(new MessageResponse("User registered successfully! \n email de confirmation vous a été envoyé à l'adresse \" "+ signUpRequest.getEmail() + "\". Veuillez suivre les instructions pour vérifier votre compte."));
         return ResponseEntity.ok(u);
@@ -193,7 +198,7 @@ public class AuthController {
     ////////////
     // Envoyer un email avec code de vérification (Reset Password)
     ////////////
-    
+
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPassRequest forgotPassRequest, HttpServletRequest request) {
         if (!userRepository.existsByEmail(forgotPassRequest.getEmail())) {
@@ -210,8 +215,8 @@ public class AuthController {
             mailMessage.setTo(forgotPassRequest.getEmail());
             mailMessage.setSubject("Password Verification");
 
-            mailMessage.setText(" Bonjour vous trouvez ci-joint un code de vérification pour réinitialiser votre mot de passe : "+ 
-            "http://localhost:4200/#/authentication/reset/" + code +"/"+forgotPassRequest.getEmail());
+            mailMessage.setText(" Bonjour vous trouvez ci-joint un code de vérification pour réinitialiser votre mot de passe : "+
+                    "http://localhost:4200/#/authentication/reset/" + code +"/"+forgotPassRequest.getEmail());
             javaMailSender.send(mailMessage);
 
             // Enregistrer le code de vérification dans la base de données
@@ -227,18 +232,18 @@ public class AuthController {
 
     @GetMapping("/verifyCodeReset")
     public ResponseEntity<?> verifyCodeReset(@RequestParam String email, @RequestParam String code) {
-    	User user = userRepository.findUserByEmail(email);
-    	if(user==null) {
-    		return ResponseEntity.ok(new MessageResponse("invalid"));
-    	}
+        User user = userRepository.findUserByEmail(email);
+        if(user==null) {
+            return ResponseEntity.ok(new MessageResponse("invalid"));
+        }
         // Vérifier si le code de vérification est valide
         if (user.getResetpasswordcode()!=null) {
-        	if(!user.getResetpasswordcode().equals(code)) {
-        		return ResponseEntity.ok(new MessageResponse("invalid"));
-        	}
+            if(!user.getResetpasswordcode().equals(code)) {
+                return ResponseEntity.ok(new MessageResponse("invalid"));
+            }
         }
         else {
-        	return ResponseEntity.ok(new MessageResponse("invalid"));
+            return ResponseEntity.ok(new MessageResponse("invalid"));
         }
         return ResponseEntity.ok(new MessageResponse("valid"));
     }
