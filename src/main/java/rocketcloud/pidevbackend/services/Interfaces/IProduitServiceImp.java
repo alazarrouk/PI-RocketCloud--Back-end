@@ -22,5 +22,6 @@ public interface IProduitServiceImp {
 
     List<Produit> getProduitsByCategorie(Categorie categorie);
 
-    Map<String, Integer> getNombreProduitsParCategorie();
+
+    List<Object[]> countProduitsByCategorie();
 }

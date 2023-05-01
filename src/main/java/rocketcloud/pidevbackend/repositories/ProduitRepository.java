@@ -13,6 +13,7 @@ import java.util.List;
 public interface ProduitRepository extends CrudRepository<Produit, Integer> {
     List<Produit> findAllByCategorie(Categorie categorie);
 
-    @Query("SELECT  c.nomCategorie, COUNT(p) FROM Produit p JOIN p.categorie c GROUP BY c.nomCategorie")
+
+    @Query("SELECT c.idCategorie, c.nomCategorie, COUNT(p.idProduit) FROM Produit p JOIN p.categorie c GROUP BY c.idCategorie")
     List<Object[]> countProduitsByCategorie();
 }
