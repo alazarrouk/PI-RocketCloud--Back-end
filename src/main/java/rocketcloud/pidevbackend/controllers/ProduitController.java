@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,9 +89,20 @@ public class ProduitController {
         CategorieController.FileUploadUtil.saveFile(uploadDir, fileName, image);
         return filePath;
     }
-    @GetMapping("/nombre-par-categorie")
-    public Map<String, Integer> getNombreProduitsParCategorie() {
-        return iProduitServiceImp.getNombreProduitsParCategorie();
+    @GetMapping("/produits/countByCategorie")
+    public ResponseEntity<?> countProduitsByCategorie() {
+        List<Object[]> result = produitRepository.countProduitsByCategorie();
+        List<Map<String, Object>> resultList = new ArrayList<>();
+
+        for (Object[] row : result) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("idCategorie", row[0]);
+            map.put("nomCategorie", row[1]);
+            map.put("count", row[2]);
+            resultList.add(map);
+        }
+
+        return ResponseEntity.ok().body(resultList);
     }
     @PutMapping("/update-Produit/{idProduit}")
     public ResponseEntity<Produit> updateProduit(

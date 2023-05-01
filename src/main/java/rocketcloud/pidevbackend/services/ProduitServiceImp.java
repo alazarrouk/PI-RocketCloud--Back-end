@@ -9,9 +9,7 @@ import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
 import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ProduitServiceImp implements IProduitServiceImp {
@@ -84,17 +82,7 @@ public class ProduitServiceImp implements IProduitServiceImp {
     }
 
     @Override
-    public Map<String, Integer> getNombreProduitsParCategorie() {
-        Map<String, Integer> result = new HashMap<>();
-
-        List<Object[]> rows = produitRepository.countProduitsByCategorie();
-
-        for (Object[] row : rows) {
-            String nomCategorie = (String) row[0];
-            Long count = (Long) row[1];
-            result.put(nomCategorie, count.intValue());
-        }
-
-        return result;
+    public List<Object[]> countProduitsByCategorie() {
+        return produitRepository.countProduitsByCategorie();
     }
 }
