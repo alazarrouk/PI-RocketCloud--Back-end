@@ -37,7 +37,17 @@ public class Produit implements Serializable {
     @JoinColumn(name = "id_vendeur")
     private Vendeur vendeur;
 
+    private int likes;
+    private int unlikes;
+
     public Produit() {
+    }
+    public void incrementLikes() {
+        this.likes++;
+    }
+
+    public void incrementUnlikes() {
+        this.unlikes++;
     }
 
 

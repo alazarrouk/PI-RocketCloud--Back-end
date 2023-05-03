@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.entities.Produit;
+import rocketcloud.pidevbackend.entities.Vendeur;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
 import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
@@ -70,6 +71,9 @@ public class ProduitServiceImp implements IProduitServiceImp {
     public List<Produit> getProduitsByCategorie(Categorie categorie) {
         return produitRepository.findAllByCategorie(categorie);
     }
+    public List<Produit> getProduitsByVendeur(Vendeur vendeur) {
+        return produitRepository.findAllByVendeur(vendeur);
+    }
     @Override
     public Produit getProduitById(int idProduit)  {
         return produitRepository.findById(idProduit).get();
@@ -84,5 +88,9 @@ public class ProduitServiceImp implements IProduitServiceImp {
     @Override
     public List<Object[]> countProduitsByCategorie() {
         return produitRepository.countProduitsByCategorie();
+    }
+    @Override
+    public List<Object[]> countProduitsByVendeur() {
+        return produitRepository.countProduitsByVendeur();
     }
 }
