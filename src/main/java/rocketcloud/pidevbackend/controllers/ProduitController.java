@@ -77,11 +77,13 @@ public class ProduitController {
         Categorie categorie = categorieRepository.getCategorieByIdCategorie(idCategorie);
         return iProduitServiceImp.getProduitsByCategorie(categorie);
     }
-    //modifier Produit
- /*   @PutMapping("/update-Produit/{idProduit}")
-    public Produit updateProduit(@PathVariable(value = "idProduit") int idProduit,@RequestBody Produit produit) {
-        return iProduitServiceImp.updateProduit(idProduit,produit);
-    }*/
+    @GetMapping("/byVendeur/{idVendeur}")
+    public List<Produit> getProduitsByVendeur(@PathVariable int idVendeur) {
+        Vendeur vendeur = vendeurRepository.getCategorieByIdVendeur(idVendeur);
+        return iProduitServiceImp.getProduitsByVendeur(vendeur);
+    }
+
+
     private String saveImage(MultipartFile image) throws IOException {
         String fileName = StringUtils.cleanPath(image.getOriginalFilename());
         String uploadDir = "produit-images/";
@@ -89,7 +91,7 @@ public class ProduitController {
         CategorieController.FileUploadUtil.saveFile(uploadDir, fileName, image);
         return filePath;
     }
-    @GetMapping("/produits/countByCategorie")
+    @GetMapping("/countByCategorie")
     public ResponseEntity<?> countProduitsByCategorie() {
         List<Object[]> result = produitRepository.countProduitsByCategorie();
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -98,6 +100,21 @@ public class ProduitController {
             Map<String, Object> map = new HashMap<>();
             map.put("idCategorie", row[0]);
             map.put("nomCategorie", row[1]);
+            map.put("count", row[2]);
+            resultList.add(map);
+        }
+
+        return ResponseEntity.ok().body(resultList);
+    }
+    @GetMapping("/countByVendeur")
+    public ResponseEntity<?> countProduitsByVendeur() {
+        List<Object[]> result = produitRepository.countProduitsByVendeur();
+        List<Map<String, Object>> resultList = new ArrayList<>();
+
+        for (Object[] row : result) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("idVendeur", row[0]);
+            map.put("nomvendeur", row[1]);
             map.put("count", row[2]);
             resultList.add(map);
         }
@@ -157,6 +174,27 @@ public class ProduitController {
     public List<Produit> getAllProduits() {
         List<Produit> listProduits = iProduitServiceImp.retrieveAllProduits();
         return listProduits;
+    }
+    @PostMapping("/{idProduit}/like")
+    public ResponseEntity<?> likeProduit(@PathVariable("idProduit") int idProduit) {
+        Produit produit = iProduitServiceImp.getProduitById(idProduit);
+        if (produit == null) {
+            return ResponseEntity.notFound().build();
+        }
+        produit.incrementLikes();
+        produitRepository.save(produit);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{idProduit}/unlike")
+    public ResponseEntity<?> unlikeProduit(@PathVariable("idProduit") int idProduit) {
+        Produit produit = iProduitServiceImp.getProduitById(idProduit);
+        if (produit == null) {
+            return ResponseEntity.notFound().build();
+        }
+        produit.incrementUnlikes();
+        produitRepository.save(produit);
+        return ResponseEntity.ok().build();
     }
 
 

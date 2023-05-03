@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rocketcloud.pidevbackend.entities.Vendeur;
 import rocketcloud.pidevbackend.repositories.VendeurRepository;
+import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping("/vendeur")
 public class VendeurController {
     @Autowired
-    private rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp iVendeurServiceImp;
+    private IVendeurServiceImp iVendeurServiceImp;
     @Autowired
     private VendeurRepository vendeurRepository;
 

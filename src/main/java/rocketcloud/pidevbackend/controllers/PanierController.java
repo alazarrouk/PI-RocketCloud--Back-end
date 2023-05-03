@@ -2,10 +2,12 @@ package rocketcloud.pidevbackend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import rocketcloud.pidevbackend.entities.Paiement;
+
 import rocketcloud.pidevbackend.entities.Panier;
-import rocketcloud.pidevbackend.services.CommandeService;
-import rocketcloud.pidevbackend.services.PanierService;
+import rocketcloud.pidevbackend.repositories.PanierRepository;
+import rocketcloud.pidevbackend.repositories.VendeurRepository;
+import rocketcloud.pidevbackend.services.Interfaces.IPanierServiceImp;
+import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
 
 import java.util.List;
 
@@ -13,22 +15,33 @@ import java.util.List;
 @RequestMapping("/panier")
 public class PanierController {
     @Autowired
-    private PanierService panierService;
-    @PostMapping("/add")
-    public Panier create_panier(@RequestBody Panier panier) {
-        return panierService.create_panier(panier);
+
+    private IPanierServiceImp iPanierServiceImp;
+    @Autowired
+    private PanierRepository panierRepository;
+    @GetMapping("/allPaniers")
+    public List<Panier> getAllPaniers() {
+        return iPanierServiceImp.getAllPaniers();
     }
-    @GetMapping("/get")
-    public List<Panier> get_paniers(){
-        return panierService.get_paniers();
+
+    @GetMapping("/getPanier/{idPanier}")
+    public Panier getPanierById(@PathVariable int idPanier) {
+        return iPanierServiceImp.getPanierById(idPanier);
     }
-    @GetMapping("/get/{id}")
-    public Panier get_panier_by_id(@PathVariable("id") Integer id) {
-        return panierService.get_panier(id);
+
+    @PostMapping("/addPanier")
+    public void addPanier(@RequestBody Panier panier) {
+        iPanierServiceImp.addPanier(panier);
     }
-    @DeleteMapping("/delete/{id}")
-    public void delete_panier(@PathVariable("id") Integer id ) {
-        panierService.delete_panier(id);
+
+    @PutMapping("/updatePaniers")
+    public void updatePanier(@RequestBody Panier panier) {
+        iPanierServiceImp.updatePanier(panier);
+    }
+
+    @DeleteMapping("/deletePanier/{idPanier}")
+    public void deletePanier(@PathVariable int idPanier) {
+        iPanierServiceImp.deletePanier(idPanier);
     }
 
 }
