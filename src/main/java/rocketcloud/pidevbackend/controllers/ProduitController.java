@@ -82,11 +82,8 @@ public class ProduitController {
         Vendeur vendeur = vendeurRepository.getCategorieByIdVendeur(idVendeur);
         return iProduitServiceImp.getProduitsByVendeur(vendeur);
     }
-    //modifier Produit
- /*   @PutMapping("/update-Produit/{idProduit}")
-    public Produit updateProduit(@PathVariable(value = "idProduit") int idProduit,@RequestBody Produit produit) {
-        return iProduitServiceImp.updateProduit(idProduit,produit);
-    }*/
+
+
     private String saveImage(MultipartFile image) throws IOException {
         String fileName = StringUtils.cleanPath(image.getOriginalFilename());
         String uploadDir = "produit-images/";
