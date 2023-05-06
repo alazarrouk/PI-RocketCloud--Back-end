@@ -1,5 +1,11 @@
 package rocketcloud.pidevbackend.entities;
 
+<<<<<<< Updated upstream
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+>>>>>>> Stashed changes
 import javax.persistence.*;
 
 import javax.validation.constraints.Email;
@@ -58,6 +64,7 @@ public class User {
     private Set<Commande> commandes;
 
     //client
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //Bidirictionnelle
     private Set<Reservation> reservations;

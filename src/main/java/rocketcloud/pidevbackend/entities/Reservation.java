@@ -3,6 +3,10 @@ package rocketcloud.pidevbackend.entities;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+<<<<<<< Updated upstream
+=======
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+>>>>>>> Stashed changes
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +16,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "Reservations")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Reservation implements Serializable {
     @Id
@@ -23,13 +28,21 @@ public class Reservation implements Serializable {
     private Date date_reservation;
     @Column(name="nb_places")
     private int nb_places;
+<<<<<<< Updated upstream
     @JsonIgnore
+=======
+>>>>>>> Stashed changes
 
     @ManyToOne
     private User user;
     @JsonIgnore
+<<<<<<< Updated upstream
 
     @ManyToOne
+=======
+    @ManyToOne
+
+>>>>>>> Stashed changes
     private Restaurant restaurant;
 
     public Reservation() {

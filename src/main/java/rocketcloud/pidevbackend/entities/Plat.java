@@ -23,10 +23,13 @@ public class Plat implements Serializable {
     private float prix_plat;
     @Column(name="description_plat")
     private String description_plat;
+<<<<<<< Updated upstream
     @JsonIgnore
 
     @ManyToOne
     Restaurant restaurant;
+=======
+>>>>>>> Stashed changes
 
     public Plat() {
     }
@@ -37,7 +40,6 @@ public class Plat implements Serializable {
         this.photo_plat = photo_plat;
         this.prix_plat = prix_plat;
         this.description_plat = description_plat;
-        this.restaurant = restaurant;
     }
     public Plat(int id_plat, String nom_plat, String photo_plat, float prix_plat, String description_plat) {
         this.id_plat = id_plat;
@@ -88,13 +90,7 @@ public class Plat implements Serializable {
         this.description_plat = description_plat;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 
     @Override
     public String toString() {
@@ -104,7 +100,6 @@ public class Plat implements Serializable {
                 ", photo_plat='" + photo_plat + '\'' +
                 ", prix_plat=" + prix_plat +
                 ", description_plat='" + description_plat + '\'' +
-                ", restaurant=" + restaurant +
                 '}';
     }
 }
