@@ -10,4 +10,9 @@ public interface ICategorieServiceImp {
     List<Categorie> retrieveAllCategories();
     void deleteCategorie(Categorie categorie);
     Categorie getCategorie(int idCategorie);
+
+
+
+    Categorie getCategorieById(int idCategorie);
+
 }

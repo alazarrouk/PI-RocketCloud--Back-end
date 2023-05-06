@@ -75,10 +75,11 @@ public class ProduitServiceImp implements IProduitServiceImp {
 
     }
 
-
     public Produit getProduit(int idProduit) {
+        System.out.println(produitRepository.findById(idProduit).get().getCategorie().getNomCategorie());
         return produitRepository.findById(idProduit).get();
     }
+
     @Override
     public List<Object[]> countProduitsByCategorie() {
         return produitRepository.countProduitsByCategorie();
@@ -87,5 +88,4 @@ public class ProduitServiceImp implements IProduitServiceImp {
     public List<Object[]> countProduitsByVendeur() {
         return produitRepository.countProduitsByVendeur();
     }
-
 }
