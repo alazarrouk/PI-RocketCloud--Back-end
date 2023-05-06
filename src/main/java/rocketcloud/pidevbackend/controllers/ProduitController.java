@@ -14,13 +14,13 @@ import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
 import rocketcloud.pidevbackend.repositories.VendeurRepository;
 
-import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
-import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
-import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
+
+
 
 import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
 import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
-import rocketcloud.pidevbackend.services.interfaces.IVendeurServiceImp;
 
 
 import java.io.IOException;
