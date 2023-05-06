@@ -6,7 +6,6 @@ import rocketcloud.pidevbackend.entities.Association;
 import rocketcloud.pidevbackend.repositories.AssociationRepository;
 import rocketcloud.pidevbackend.services.interfaces.IAssociation;
 
-
 import java.util.List;
 @Service
 public class AssociationService implements IAssociation {

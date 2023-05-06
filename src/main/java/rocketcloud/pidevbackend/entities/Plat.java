@@ -23,9 +23,13 @@ public class Plat implements Serializable {
     private float prix_plat;
     @Column(name="description_plat")
     private String description_plat;
+
+    @JsonIgnore
+
     @ManyToOne
    // @JsonIgnore
     Restaurant restaurant;
+
 
     public Plat() {
     }
@@ -36,7 +40,6 @@ public class Plat implements Serializable {
         this.photo_plat = photo_plat;
         this.prix_plat = prix_plat;
         this.description_plat = description_plat;
-        this.restaurant = restaurant;
     }
 
     public int getId_plat() {
@@ -79,13 +82,7 @@ public class Plat implements Serializable {
         this.description_plat = description_plat;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 
     @Override
     public String toString() {
@@ -95,7 +92,6 @@ public class Plat implements Serializable {
                 ", photo_plat='" + photo_plat + '\'' +
                 ", prix_plat=" + prix_plat +
                 ", description_plat='" + description_plat + '\'' +
-                ", restaurant=" + restaurant +
                 '}';
     }
 }

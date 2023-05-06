@@ -1,7 +1,6 @@
 package rocketcloud.pidevbackend.services.interfaces;
 
 import rocketcloud.pidevbackend.entities.Reservation;
-import rocketcloud.pidevbackend.entities.Restaurant;
 
 public interface Ireservation {
     Iterable<Reservation> listAllreservaton();
@@ -11,4 +10,8 @@ public interface Ireservation {
     Reservation updateReservation(Reservation reservation);
 
     void deleteReservation(Integer id);
+    int getnbreservation();
+    int getnbreservationyear();
+    int getnbreservationMonth();
+
 }

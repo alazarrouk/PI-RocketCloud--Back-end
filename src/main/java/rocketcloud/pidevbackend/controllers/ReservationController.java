@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import rocketcloud.pidevbackend.entities.Reservation;
-import rocketcloud.pidevbackend.entities.Restaurant;
 import rocketcloud.pidevbackend.services.interfaces.Ireservation;
 
 @Controller
 @RestController
 @RequestMapping("/reservation")
+
 
 public class ReservationController {
     @Autowired
@@ -22,9 +22,9 @@ public class ReservationController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deletereservation(@PathVariable int id) {
+    public void deletereservation(@PathVariable int id) {
         ireservation.deleteReservation(id);
-        return "done";
+
     }
     @GetMapping("/getAll")
     public Iterable<Reservation> listAllreservation(){
@@ -33,5 +33,21 @@ public class ReservationController {
     @PostMapping("/updatereservation")
     public Reservation updateRestaurant(@RequestBody Reservation reservation){
         return ireservation.updateReservation(reservation);
+    }
+    @GetMapping("/getnb")
+    public int getnbreservation() {
+
+       return  ireservation.getnbreservation();
+    }
+    @GetMapping("/getnbyear")
+    public int getnbreservationyear() {
+
+        return  ireservation.getnbreservationyear();
+    }
+    @GetMapping("/getnbmonth")
+
+    public int getnbreservationmonth() {
+
+        return  ireservation.getnbreservationMonth();
     }
 }

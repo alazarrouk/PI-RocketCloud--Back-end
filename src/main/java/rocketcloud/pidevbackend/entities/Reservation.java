@@ -3,6 +3,7 @@ package rocketcloud.pidevbackend.entities;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "Reservations")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Reservation implements Serializable {
     @Id
@@ -27,6 +29,13 @@ public class Reservation implements Serializable {
     private User user;
     @ManyToOne
    // @JsonIgnore
+
+    @JsonIgnore
+    @ManyToOne
+    private User user;
+
+    @JsonIgnore
+    @ManyToOne
     private Restaurant restaurant;
 
     public Reservation() {

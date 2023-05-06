@@ -1,30 +1,36 @@
 package rocketcloud.pidevbackend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import rocketcloud.pidevbackend.entities.Restaurant;
+import rocketcloud.pidevbackend.services.RestaurantService;
 import rocketcloud.pidevbackend.services.interfaces.Irestaurant;
 
 
-@Controller
 @RestController
 @RequestMapping("/restaurant")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
+
+
 public class RestaurantController {
     @Autowired
     private Irestaurant irestaurant;
-
+    @Autowired
+    private RestaurantService restaurantService;
 
     @PostMapping("/addrestaurant")
     public Restaurant addRestaurant(@RequestBody Restaurant restaurant){
+        System.out.println("resto"+restaurant);
         return irestaurant.addRestaurant(restaurant);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleterestaurant(@PathVariable int id) {
+    public void deleterestaurant(@PathVariable int id) {
         irestaurant.deleteRestaurant(id);
-        return "done";
     }
+ //   @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/getAll")
     public Iterable<Restaurant> listAllrestaurant(){
         return irestaurant.listAllrestaurant();
@@ -33,10 +39,12 @@ public class RestaurantController {
     public Restaurant updateRestaurant(@RequestBody Restaurant restaurant){
         return irestaurant.updateRestaurant(restaurant);
     }
+  //  @GetMapping("/{nom_restaurant}")
+    //public Restaurant getRestaurantByNom(@PathVariable String nom_restaurant) {
+       // return irestaurant.getRestaurantByNom(nom_restaurant);
 
 
-
-
+  //  }
 
 
 }

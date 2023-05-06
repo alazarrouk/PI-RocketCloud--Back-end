@@ -41,5 +41,10 @@ public class RestaurantService implements Irestaurant {
 
     }
 
+  //  @Override
+  //  public Restaurant getRestaurantByNom(String nom_restaurant) {
+    //    return restaurantRepo.findRestaurantByNom_restaurant(nom_restaurant);
+  //  }
+
 
 }

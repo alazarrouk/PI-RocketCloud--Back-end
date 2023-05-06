@@ -30,8 +30,6 @@ public class CategorieServiceImp implements ICategorieServiceImp {
     public Categorie getCategorie(int idCategorie) {
         return categorieRepository.findById(idCategorie).get();
     }
-
-
     @Override
     public Categorie getCategorieById(int idCategorie)  {
         return categorieRepository.findById(idCategorie).get();
@@ -48,5 +46,6 @@ public class CategorieServiceImp implements ICategorieServiceImp {
             throw new EntityNotFoundException("Categorie not found with id: " + idCategorie);
         }
     }*/
+
 
 }

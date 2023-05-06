@@ -21,7 +21,6 @@ public class PaiementService implements IPaiement {
         return paiementRepository.save(paiement);
     }
 
-
     @Override
     public void delete_paiement(Integer id) {paiementRepository.deleteById(id);}
     @Override
@@ -48,4 +47,5 @@ public class PaiementService implements IPaiement {
     public List<Object[]> getsumMontantByDayOfWeek() {
         return paiementRepository.getsumMontantByDayOfWeek();
     }
+
 }
