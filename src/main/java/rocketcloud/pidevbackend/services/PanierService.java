@@ -2,9 +2,8 @@ package rocketcloud.pidevbackend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rocketcloud.pidevbackend.entities.Paiement;
 import rocketcloud.pidevbackend.entities.Panier;
-import rocketcloud.pidevbackend.repositories.PaiementRepository;
+import rocketcloud.pidevbackend.entities.Produit;
 import rocketcloud.pidevbackend.repositories.PanierRepository;
 import rocketcloud.pidevbackend.services.Interfaces.IPanier;
 
@@ -30,4 +29,6 @@ public class PanierService implements IPanier {
     }
     @Override
     public Panier get_panier(Integer id) { return panierRepository.findById(id).get();}
+
+
 }

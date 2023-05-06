@@ -19,11 +19,6 @@ public class ProduitServiceImp implements IProduitServiceImp {
     @Autowired
     private CategorieRepository categorieRepository;
     public Produit addProduit(Produit produit) {
-        // Retrieve the Categorie entity from the database
-
-        //  Categorie categorie = categorieRepository.findById(produit.getCategorie().getIdCategorie()).orElse(null);
-        // Set the managed Categorie entity on the Produit entity
-        //produit.setCategorie(categorie);
         return produitRepository.save(produit);
     }
     public Produit updateProduit(int idProduit, Produit produit) {
@@ -79,7 +74,6 @@ public class ProduitServiceImp implements IProduitServiceImp {
     }
 
     public Produit getProduit(int idProduit) {
-        System.out.println(produitRepository.findById(idProduit).get().getCategorie().getNomCategorie());
         return produitRepository.findById(idProduit).get();
     }
 

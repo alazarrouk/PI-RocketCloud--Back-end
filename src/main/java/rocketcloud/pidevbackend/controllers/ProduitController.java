@@ -82,6 +82,14 @@ public class ProduitController {
         Vendeur vendeur = vendeurRepository.getCategorieByIdVendeur(idVendeur);
         return iProduitServiceImp.getProduitsByVendeur(vendeur);
     }
+    @GetMapping("/produits/search1")
+    public List<Produit> searchProduits( @RequestParam(required = false) String searchTerm) {
+        return produitRepository.searchProduits( searchTerm);
+    }
+    @GetMapping("/produits/search2")
+    public List<Produit> searchProduitsVendeur( @RequestParam(required = false) String searchTerm) {
+        return produitRepository.searchProduits( searchTerm);
+    }
 
 
     private String saveImage(MultipartFile image) throws IOException {
