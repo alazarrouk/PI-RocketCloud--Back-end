@@ -18,4 +18,7 @@ public interface IPaiement {
     //retrieve
     List<Paiement> get_paiements();
     Paiement get_paiement(Integer id);
+    List<Object[]> get_total_paiement_grouped_by_month();
+    List<Object[]> getMontantSumByWeek();
+    List<Object[]> getsumMontantByDayOfWeek();
 }

@@ -6,6 +6,8 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.*;
 import com.stripe.param.CustomerListParams;
 import com.stripe.param.PaymentIntentCreateParams;
+import com.stripe.param.RefundCreateParams;
+import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Carte;
 import rocketcloud.pidevbackend.entities.User;
 
@@ -16,15 +18,15 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+@Service
 public class StripeService {
-    public void setApiKey() {
-        Stripe.apiKey = "sk_test_51MfpzeHNXQGXsKQNfyUWwUQiZTZm4jCJ7oR1YwabPZtSlWM1QVrd9NgJt68tHszl4x8PRdkFzZoEBYhAbyovocv600464BWMo2";
-    }
+
 
     public String payment(User user, int amount, Carte carte){
-        setApiKey();
+        System.out.println("before check customer :");
+        Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
         String result="";
+        System.out.println("before check customer :");
         String customer_id=check_customer_exists(user.getEmail());
         System.out.println("old customerId :"+customer_id);
         if(customer_id.equals("")){
@@ -47,6 +49,7 @@ public class StripeService {
 
     //create and confirm payment
     public String create_payment_intent(String customer_stripe_id,int amount){
+        Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
         Map<String,Object> responseData=new HashMap<>();
         String response="";
         try {
@@ -67,6 +70,7 @@ public class StripeService {
 
     public void confirm_payment_intent(String paymentIntent_id ){
         try {
+            Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
             PaymentIntent paymentIntent =PaymentIntent.retrieve(paymentIntent_id);
             Map<String, Object> params = new HashMap<>();
             params.put("payment_method", "pm_card_visa");
@@ -80,6 +84,7 @@ public class StripeService {
 
     //customers
     public String create_customer(User user){
+        Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
         String customer_stripe_id="";
         try {
             Map<String, Object> params = new HashMap<>();
@@ -99,12 +104,14 @@ public class StripeService {
     }
 
     public String check_customer_exists(String email){
+        Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
         String customer_stripe_id="";
         try {
             CustomerListParams params=new CustomerListParams.Builder()
                     .setEmail(email)
                     .build();
             CustomerCollection customers=Customer.list(params);
+            System.out.println("getting the list of customers");
             if(customers.getData().size()!=0){
                 for(Customer customer:customers.getData()){
                     customer_stripe_id=customer.getId();
@@ -119,6 +126,7 @@ public class StripeService {
 
     //credit_cards
     public Card create_card(String customer_stripe_id,Carte carte ){
+        Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
         Card new_card=null;
         try {
             Map<String, Object> retrieveParams =new HashMap<>();
@@ -152,6 +160,7 @@ public class StripeService {
 
     public void get_customer_cards(String customer_stripe_id){
         try {
+            Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
             List<String> expandList = new ArrayList<>();
             expandList.add("sources");
             Map<String, Object> retrieveParams = new HashMap<>();
@@ -170,6 +179,7 @@ public class StripeService {
     public Card get_customer_card_by_id(String customer_stripe_id, String card_stripe_id){
         Card card=null;
         try {
+            Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
             Map<String, Object> retrieveParams =new HashMap<>();
             List<String> expandList = new ArrayList<>();
             expandList.add("sources");
@@ -186,6 +196,7 @@ public class StripeService {
     public Card get_customer_card_by_number(String customer_stripe_id,String card_number){
         Card card=null;
         try {
+            Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
             List<String> expandList = new ArrayList<>();
             expandList.add("sources");
             Map<String, Object> retrieveParams = new HashMap<>();
@@ -205,6 +216,21 @@ public class StripeService {
             Logger.getLogger(StripeService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return card;
+    }
+    public boolean refund_customer(String paymentIntent_id){
+        boolean check=false;
+        try {
+            Stripe.apiKey = "sk_test_51HpdngGvHaENfAb1XmYRtIMhUHirG72pnjHHCQvMnLWluANGmJoLLzRwBwjZvM8BV33XEXTQHpO8KSbqcJjF8YCQ00sBtBeYJh";
+            RefundCreateParams params= RefundCreateParams
+                    .builder()
+                    .setPaymentIntent(paymentIntent_id)
+                    .build();
+            Refund refund=Refund.create(params);
+            check=true;
+        } catch (StripeException ex) {
+            Logger.getLogger(StripeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return check;
     }
 
     @Override

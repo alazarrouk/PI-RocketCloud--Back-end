@@ -32,10 +32,8 @@ public class Produit implements Serializable {
    @ManyToOne(cascade=CascadeType.ALL)
    @JoinColumn(name = "id_categorie")
    private Categorie categorie;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-
     public Produit() {
     }
 
