@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Panier;
 import rocketcloud.pidevbackend.repositories.PanierRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IPanierServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IPanierServiceImp;
 
 import java.util.List;
 

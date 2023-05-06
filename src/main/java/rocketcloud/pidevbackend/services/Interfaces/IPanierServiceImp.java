@@ -1,4 +1,4 @@
-package rocketcloud.pidevbackend.services.Interfaces;
+package rocketcloud.pidevbackend.services.interfaces;
 
 import rocketcloud.pidevbackend.entities.Panier;
 

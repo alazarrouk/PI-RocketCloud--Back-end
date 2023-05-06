@@ -4,7 +4,7 @@ import rocketcloud.pidevbackend.entities.Vendeur;
 import rocketcloud.pidevbackend.repositories.VendeurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IVendeurServiceImp;
 
 import java.util.List;
 
