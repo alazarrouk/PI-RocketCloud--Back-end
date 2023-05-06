@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rocketcloud.pidevbackend.entities.Vendeur;
 import rocketcloud.pidevbackend.repositories.VendeurRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IVendeurServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;
