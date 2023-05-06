@@ -21,6 +21,8 @@ public class Commande {
     private Date date;
     @Column(name="total")
     private float total;
+    @Column(name="status",columnDefinition = "VARCHAR(255) DEFAULT 'confirmée'")
+    private String status;
     @ManyToOne
     User user;
     @OneToOne
@@ -31,15 +33,15 @@ public class Commande {
     public Commande() {
     }
 
-    public Commande(int id_commande, Date date, float total, User user, Paiement paiement, Set<Produit> produits) {
+    public Commande(int id_commande, Date date, float total, String status, User user, Paiement paiement, Set<Produit> produits) {
         this.id_commande = id_commande;
         this.date = date;
         this.total = total;
+        this.status = status;
         this.user = user;
         this.paiement = paiement;
         this.produits = produits;
     }
-
 
     public int getId_commande() {
         return id_commande;
@@ -49,12 +51,28 @@ public class Commande {
         this.id_commande = id_commande;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public float getTotal() {
         return total;
     }
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public User getUser() {
@@ -73,14 +91,6 @@ public class Commande {
         this.paiement = paiement;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Set<Produit> getProduits() {
         return produits;
     }
@@ -95,6 +105,7 @@ public class Commande {
                 "id_commande=" + id_commande +
                 ", date=" + date +
                 ", total=" + total +
+                ", status='" + status + '\'' +
                 ", user=" + user +
                 ", paiement=" + paiement +
                 ", produits=" + produits +

@@ -6,7 +6,7 @@ import rocketcloud.pidevbackend.entities.Paiement;
 import rocketcloud.pidevbackend.entities.Panier;
 import rocketcloud.pidevbackend.repositories.PaiementRepository;
 import rocketcloud.pidevbackend.repositories.PanierRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IPanier;
+import rocketcloud.pidevbackend.services.interfaces.IPanier;
 
 import java.util.List;
 

@@ -16,6 +16,7 @@ import rocketcloud.pidevbackend.repositories.VendeurRepository;
 import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
 import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
 import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Association;
 import rocketcloud.pidevbackend.repositories.AssociationRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IAssociation;
+import rocketcloud.pidevbackend.services.interfaces.IAssociation;
+
 
 import java.util.List;
 @Service

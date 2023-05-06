@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Don;
 import rocketcloud.pidevbackend.repositories.DonRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IDon;
+import rocketcloud.pidevbackend.services.interfaces.IDon;
 
 import java.util.List;
 @Service

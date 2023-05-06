@@ -8,7 +8,7 @@ import rocketcloud.pidevbackend.entities.Produit;
 import rocketcloud.pidevbackend.entities.Vendeur;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package rocketcloud.pidevbackend.services.Interfaces;
+package rocketcloud.pidevbackend.services.interfaces;
 
 import rocketcloud.pidevbackend.entities.Commande;
 import rocketcloud.pidevbackend.entities.Don;

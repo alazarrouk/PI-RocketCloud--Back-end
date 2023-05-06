@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.User;
 import rocketcloud.pidevbackend.repositories.RoleRepository;
 import rocketcloud.pidevbackend.repositories.UserRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IUserService;
+import rocketcloud.pidevbackend.services.interfaces.IUserService;
 
 
 import java.util.List;
