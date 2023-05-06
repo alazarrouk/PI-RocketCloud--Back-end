@@ -30,6 +30,7 @@ public interface PaiementRepository extends JpaRepository<Paiement,Integer> {
             "GROUP BY FUNCTION('MONTH', p.date)\n")
     public List<Object[]> get_monthly_montant();
 
+
     @Query("SELECT WEEK(p.date) as week, SUM(p.montant) as total FROM Paiement p WHERE YEAR(p.date) = YEAR(CURRENT_DATE) AND MONTH(p.date) = MONTH(CURRENT_DATE) GROUP BY WEEK(p.date)")
     List<Object[]> getMontantSumByWeek();
     @Query("SELECT DAYNAME(p.date), SUM(p.montant) " +
