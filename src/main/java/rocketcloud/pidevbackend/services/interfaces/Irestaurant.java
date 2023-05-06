@@ -11,5 +11,6 @@ public interface Irestaurant {
     Restaurant updateRestaurant(Restaurant restaurant);
 
     void deleteRestaurant(Integer id);
+    //Restaurant getRestaurantByNom(String nom_restaurant);
 
 }

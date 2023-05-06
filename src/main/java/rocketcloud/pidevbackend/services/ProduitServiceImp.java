@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.entities.Produit;
 import rocketcloud.pidevbackend.entities.Vendeur;
+
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class ProduitServiceImp implements IProduitServiceImp {
     @Autowired
     private CategorieRepository categorieRepository;
     public Produit addProduit(Produit produit) {
+
         return produitRepository.save(produit);
     }
     public Produit updateProduit(int idProduit, Produit produit) {
@@ -73,10 +75,10 @@ public class ProduitServiceImp implements IProduitServiceImp {
 
     }
 
+
     public Produit getProduit(int idProduit) {
         return produitRepository.findById(idProduit).get();
     }
-
     @Override
     public List<Object[]> countProduitsByCategorie() {
         return produitRepository.countProduitsByCategorie();
@@ -85,4 +87,5 @@ public class ProduitServiceImp implements IProduitServiceImp {
     public List<Object[]> countProduitsByVendeur() {
         return produitRepository.countProduitsByVendeur();
     }
+
 }

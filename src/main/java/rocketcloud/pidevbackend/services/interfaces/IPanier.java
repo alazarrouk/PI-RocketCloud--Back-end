@@ -1,7 +1,6 @@
 package rocketcloud.pidevbackend.services.interfaces;
 
 import rocketcloud.pidevbackend.entities.Panier;
-import rocketcloud.pidevbackend.entities.Produit;
 
 import java.util.List;
 
@@ -18,6 +17,4 @@ public interface IPanier {
     //retrieve
     List<Panier> get_paniers();
     Panier get_panier(Integer id);
-
-
 }

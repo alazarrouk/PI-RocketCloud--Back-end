@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
-import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
 
 import java.util.List;
 
@@ -30,8 +30,6 @@ public class CategorieServiceImp implements ICategorieServiceImp {
     public Categorie getCategorie(int idCategorie) {
         return categorieRepository.findById(idCategorie).get();
     }
-
-
     @Override
     public Categorie getCategorieById(int idCategorie)  {
         return categorieRepository.findById(idCategorie).get();
@@ -48,5 +46,6 @@ public class CategorieServiceImp implements ICategorieServiceImp {
             throw new EntityNotFoundException("Categorie not found with id: " + idCategorie);
         }
     }*/
+
 
 }

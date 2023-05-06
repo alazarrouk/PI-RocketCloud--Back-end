@@ -3,9 +3,11 @@ package rocketcloud.pidevbackend.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Panier;
-import rocketcloud.pidevbackend.entities.Produit;
+
+import rocketcloud.pidevbackend.repositories.PaiementRepository;
+
 import rocketcloud.pidevbackend.repositories.PanierRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IPanier;
+import rocketcloud.pidevbackend.services.interfaces.IPanier;
 
 import java.util.List;
 

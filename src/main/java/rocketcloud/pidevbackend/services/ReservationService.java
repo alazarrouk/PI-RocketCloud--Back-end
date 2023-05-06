@@ -30,4 +30,19 @@ public class ReservationService implements Ireservation {
         reporeservation.deleteById(id);
 
     }
+
+    @Override
+    public int getnbreservation() {
+        return reporeservation.getCountReservation();
+    }
+    @Override
+public int getnbreservationyear()
+{
+    return reporeservation.getCountReservationyear();
+}
+
+    @Override
+    public int getnbreservationMonth() {
+        return reporeservation.getCountReservationmonth();
+    }
 }

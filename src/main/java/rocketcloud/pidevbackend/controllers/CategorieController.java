@@ -2,7 +2,6 @@ package rocketcloud.pidevbackend.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -10,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rocketcloud.pidevbackend.entities.Categorie;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
-import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 
 import java.util.List;
 
@@ -90,6 +90,7 @@ public class CategorieController {
     }
 
 
+
     //supprimer categorie
     @DeleteMapping("/{idCategorie}")
     @ResponseBody
@@ -136,5 +137,4 @@ public class CategorieController {
             }
         }
     }
-
 }

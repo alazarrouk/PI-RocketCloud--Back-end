@@ -13,8 +13,8 @@ import rocketcloud.pidevbackend.entities.Vendeur;
 import rocketcloud.pidevbackend.repositories.CategorieRepository;
 import rocketcloud.pidevbackend.repositories.ProduitRepository;
 import rocketcloud.pidevbackend.repositories.VendeurRepository;
-import rocketcloud.pidevbackend.services.Interfaces.ICategorieServiceImp;
-import rocketcloud.pidevbackend.services.Interfaces.IProduitServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.ICategorieServiceImp;
+import rocketcloud.pidevbackend.services.interfaces.IProduitServiceImp;
 import rocketcloud.pidevbackend.services.Interfaces.IVendeurServiceImp;
 
 import java.io.IOException;
@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @RestController
 @RequestMapping("/produit")
@@ -167,7 +168,6 @@ public class ProduitController {
         return ResponseEntity.ok(updatedProduit);
     }
 
-
     //supprimer Produit
     @DeleteMapping("/{idProduit}")
     @ResponseBody
@@ -206,12 +206,6 @@ public class ProduitController {
     }
 
 
-    //afficher un seul Produit
-    @GetMapping("/retrieve-produit/{idProduit}")
-    @ResponseBody
-    public Produit retrieveProduit(@PathVariable("idProduit") int idProduit) {
-        return iProduitServiceImp.getProduit(idProduit);
-    }
     @GetMapping("/produitImage/{idProduit}")
     public ResponseEntity<byte[]> getImage(@PathVariable int idProduit) throws IOException {
         Produit produit = produitRepository.findById(idProduit).orElse(null);
@@ -247,6 +241,4 @@ public class ProduitController {
             }
         }
     }
-
-
 }

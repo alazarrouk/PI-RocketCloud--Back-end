@@ -2,6 +2,7 @@ package rocketcloud.pidevbackend.entities;
 
 import javax.persistence.*;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -23,12 +24,15 @@ public class Restaurant  implements Serializable  {
     private String localisation_restaurant;
     @Column(name="photo_restaurant")
     private String photo_restaurant;
+
     @Column(name="tel_restaurant")
     private int tel_restaurant;
 
-    @Column(nullable = true)
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "restaurant") //bidirectionnelle
+     @Nullable
+    @OneToMany(cascade = CascadeType.MERGE) //unidirectionnelle
     private Set<Plat> plats;
+    @Nullable
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private Set<Reservation> reservations;

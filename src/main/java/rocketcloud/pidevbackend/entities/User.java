@@ -3,6 +3,7 @@ package rocketcloud.pidevbackend.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -73,6 +74,8 @@ public class User {
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
+    public User() {
+    }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
@@ -80,21 +83,21 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
-    }
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(cascade = CascadeType.ALL) //unidirictionnelle
     private Set<Produit> produits;
 
     //client
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(cascade = CascadeType.ALL,mappedBy="user") //Bidirictionnelle
     private Set<Commande> commandes;
 
     //client
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //Bidirictionnelle
-    @JsonIgnore
     private Set<Reservation> reservations;
 
     //client
@@ -103,11 +106,13 @@ public class User {
     private Set<Reclamation> reclamations;
 
     //client
+    @JsonIgnore
     @Column(nullable = true)
     @OneToMany(cascade = CascadeType.ALL) //Bidirictionnelle
     private Set<Don> dons;
 
     //client
+    @JsonIgnore
     @Column(nullable = true)
     @ManyToMany(cascade = CascadeType.ALL) //unidirictionnelle
     private Set<Recette> recettes;

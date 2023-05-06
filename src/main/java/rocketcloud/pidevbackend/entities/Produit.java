@@ -40,6 +40,10 @@ public class Produit implements Serializable {
     private int likes;
     private int unlikes;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
+    
     public Produit() {
     }
     public void incrementLikes() {
