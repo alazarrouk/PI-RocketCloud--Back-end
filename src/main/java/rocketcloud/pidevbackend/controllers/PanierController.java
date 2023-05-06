@@ -27,7 +27,7 @@ import rocketcloud.pidevbackend.services.interfaces.IPanierServiceImp;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/panier")
 public class PanierController {
