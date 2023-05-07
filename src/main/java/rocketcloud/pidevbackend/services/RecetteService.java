@@ -24,10 +24,15 @@ public class RecetteService implements IRecette {
         return recetteRepo.findAll();
     }
 
-//    @Override
-//    public List<Recette> getRecetteByName(Recette recette) {
-//        return recetteRepo.findByName(recette);
-//    }
+    @Override
+    public Recette getRecetteByNom(String nom) {
+        return recetteRepo.findByNom(nom);
+    }
+
+    @Override
+    public int getCountRecettesPending() {
+        return recetteRepo.getCountRecettesPending();
+    }
 
     @Override
     public Recette updateRecette(Recette recette) {

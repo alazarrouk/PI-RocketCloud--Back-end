@@ -8,6 +8,7 @@ import rocketcloud.pidevbackend.services.interfaces.IIngredient;
 
 @RestController
 @RequestMapping("/Ingredient")
+@CrossOrigin(origins = "", allowedHeaders = "")
 public class IngredientController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class IngredientController {
         return iIngredient.getIngredient();
     }
 
-    @PostMapping("/updateIngredient")
+    @PutMapping("/updateIngredient")
     public Ingredient updateIngredient(@RequestBody Ingredient ingredient){
         return iIngredient.updateIngredient(ingredient);
     }

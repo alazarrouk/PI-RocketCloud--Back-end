@@ -16,5 +16,7 @@ public class Ingredient implements Serializable {
     private int id_ingredient;
     @Column(name="nom")
     private String nom;
+    @Column(name="image")
+    private String image;
 
 }

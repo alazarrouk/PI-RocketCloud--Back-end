@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Recette")
+@CrossOrigin("http://localhost:4200")
 public class RecetteController {
     @Autowired
     private IRecette iRecette;
@@ -18,24 +19,25 @@ public class RecetteController {
     public Recette addRecette(@RequestBody Recette recette){
         return iRecette.addRecette(recette);
     }
-
     @GetMapping("/getAll")
     public Iterable<Recette> getRecette(){
         return iRecette.getRecette();
     }
-
-    @PostMapping("/updateRecette")
+    @PutMapping("/updateRecette")
     public Recette updateRecette(@RequestBody Recette recette) {
         return iRecette.updateRecette(recette);
     }
     @DeleteMapping("/delete/{id}")
-    public String removeRecette(@PathVariable int id) {
+    public void removeRecette(@PathVariable int id) {
         iRecette.removeRecette(id);
-        return "done";
     }
+    @GetMapping("/{nom}")
+    public Recette getRecetteByNom(@PathVariable String nom){
+        return iRecette.getRecetteByNom(nom);
+    }
+    @GetMapping("/getNbRecette")
 
-//    @GetMapping("/{nom}")
-//    public List<Recette> getRecetteByName(Recette recette){
-//        return iRecette.getRecetteByName(recette);
-//    }
+    public int getCountRecettesPending() {
+        return  iRecette.getCountRecettesPending();
+    }
 }
