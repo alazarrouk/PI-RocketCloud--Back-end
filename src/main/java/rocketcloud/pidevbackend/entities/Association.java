@@ -17,7 +17,7 @@ public class Association implements Serializable {
     @Column(name="nom")
     private String nom;
     @Column(nullable = true)
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "association") //bidirectionnelle
+    @OneToMany(cascade = CascadeType.MERGE) //bidirectionnelle
     private Set<Don> dons;
 
     public Association() {

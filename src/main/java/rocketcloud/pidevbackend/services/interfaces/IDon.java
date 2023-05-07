@@ -13,6 +13,9 @@ public interface IDon {
     //remove
     void Delete_Don(Integer id);
 
+    public Don donproduit(Don don);
+
+
     //retrieve
     List<Don> Get_Dons();
     Don Get_Don(Integer id);

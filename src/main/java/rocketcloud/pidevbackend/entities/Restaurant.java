@@ -30,8 +30,11 @@ public class Restaurant  implements Serializable  {
     @Column(name="tel_restaurant")
     private int tel_restaurant;
 
+
      @Nullable
     @OneToMany(cascade = CascadeType.MERGE) //unidirectionnelle
+
+
     private Set<Plat> plats;
     @Nullable
     @JsonIgnore
@@ -50,7 +53,14 @@ public class Restaurant  implements Serializable  {
         this.tel_restaurant = tel_restaurant;
         this.plats = plats;
         this.reservations = reservations;
+    } public Restaurant(int id_restaurant, String nom_restaurant, String localisation_restaurant, String photo_restaurant, int tel_restaurant) {
+        this.id_restaurant = id_restaurant;
+        this.nom_restaurant = nom_restaurant;
+        this.localisation_restaurant = localisation_restaurant;
+        this.photo_restaurant = photo_restaurant;
+        this.tel_restaurant = tel_restaurant;
     }
+
 
     public int getId_restaurant() {
         return id_restaurant;
