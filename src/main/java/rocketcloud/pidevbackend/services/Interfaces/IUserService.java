@@ -17,4 +17,6 @@ public interface IUserService {
 
     User updateUser(User u);
 
+    int countUsers();
+
 }
