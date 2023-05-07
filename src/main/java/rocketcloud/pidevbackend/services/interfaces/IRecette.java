@@ -10,5 +10,7 @@ public interface IRecette {
     Recette updateRecette(Recette recette);
 
     Iterable<Recette> getRecette();
-//    List<Recette> getRecetteByName(Recette recette);
+    Recette getRecetteByNom(String nom);
+
+    int getCountRecettesPending();
 }

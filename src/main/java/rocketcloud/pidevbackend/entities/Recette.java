@@ -20,6 +20,8 @@ public class Recette implements Serializable {
     private String image;
     @Column(name="description")
     private String description;
+    @Column (name = "status")
+    private String status;
 
     @ManyToMany(cascade = CascadeType.MERGE)
 
