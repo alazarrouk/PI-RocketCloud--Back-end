@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import rocketcloud.pidevbackend.entities.Role;
 import rocketcloud.pidevbackend.entities.User;
 import rocketcloud.pidevbackend.payload.request.SignupRequest;
 import rocketcloud.pidevbackend.payload.response.MessageResponse;
@@ -19,8 +20,7 @@ import rocketcloud.pidevbackend.services.iUserServiceImp;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 @RestController
@@ -109,7 +109,30 @@ public class UserController {
         return ResponseEntity.ok(u);
 
     }
+    @PutMapping("/modif/{id}")
+    @ResponseBody
+    public ResponseEntity<?> editAccount(@Valid @RequestBody SignupRequest signUpRequest,@PathVariable("id")Long id ) throws IOException {
 
+        User user = userRepository.findUserByid(id);
+
+
+
+        user.setEmail(signUpRequest.getEmail());
+        user.setUsername(signUpRequest.getUsername());
+        user.setAdresse(signUpRequest.getAdresse());
+
+
+        user.setFullname(signUpRequest.getFullname());
+
+        if(signUpRequest.getPassword()!="") {
+            user.setPassword(encoder.encode(signUpRequest.getPassword()));
+        }
+        User u=userRepository.save(user);
+        System.out.println(u.getFullname());
+        System.out.println(u.getAdresse());
+        return ResponseEntity.ok(u);
+
+    }
     public User getConnectedUser() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -124,6 +147,45 @@ public class UserController {
 
 
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchUsers(
+            @RequestParam(required = false) String username) {
 
+        List<User> users = userRepository.findByusernameContaining(
+                username != null ? username : "");
 
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/count")
+    public int count(){
+        return iUserServiceImp.countUsers();
+    }
+
+    @GetMapping("/roles")
+    public List<Role> liste(){
+        return iUserServiceImp.getAllRoles();
+    }
+    @GetMapping("/admincount")
+    public int countadmin(){
+        return iUserServiceImp.getAdminUserCount();
+    }
+    @GetMapping("/usercount")
+    public int countuser(){
+        return iUserServiceImp.getUserCount();
+    }
+
+    @GetMapping("/vendeurcount")
+    public int countvendeur(){
+        return iUserServiceImp.getVendeurCount();
+    }
+
+    @GetMapping("/countt")
+    public Map<Integer, Integer> getUserCounts() {
+        Map<Integer, Integer> counts = new HashMap<>();
+        counts.put(1, iUserServiceImp.getAdminUserCount());
+        counts.put(2, iUserServiceImp.getUserCount());
+        counts.put(3, iUserServiceImp.getVendeurCount());
+        return counts;
+    }
 }
