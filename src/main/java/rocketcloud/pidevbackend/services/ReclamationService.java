@@ -1,3 +1,4 @@
+/*
 package rocketcloud.pidevbackend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,3 +40,4 @@ public class ReclamationService implements IReclamation {
         return reclamationRepository.findById(id).get();
     }
 }
+*/
