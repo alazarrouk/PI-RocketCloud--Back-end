@@ -23,9 +23,7 @@ public class Don  implements Serializable {
     private float montant;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Produit> produits;
-    @ManyToOne
-    Association association;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     User user;
 
     public Don() {
@@ -36,7 +34,6 @@ public class Don  implements Serializable {
         this.date = date;
         this.montant = montant;
         this.produits = produits;
-        this.association = association;
         this.user = user;
     }
 
@@ -72,13 +69,6 @@ public class Don  implements Serializable {
         this.produits = produits;
     }
 
-    public Association getAssociation() {
-        return association;
-    }
-
-    public void setAssociation(Association association) {
-        this.association = association;
-    }
 
     public User getUser() {
         return user;
@@ -95,7 +85,6 @@ public class Don  implements Serializable {
                 ", date=" + date +
                 ", montant=" + montant +
                 ", produits=" + produits +
-                ", association=" + association +
                 ", user=" + user +
                 '}';
     }

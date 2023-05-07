@@ -41,6 +41,14 @@ public class Plat implements Serializable {
         this.prix_plat = prix_plat;
         this.description_plat = description_plat;
     }
+    public Plat(int id_plat, String nom_plat, String photo_plat, float prix_plat, String description_plat) {
+        this.id_plat = id_plat;
+        this.nom_plat = nom_plat;
+        this.photo_plat = photo_plat;
+        this.prix_plat = prix_plat;
+        this.description_plat = description_plat;
+    }
+
 
     public int getId_plat() {
         return id_plat;

@@ -26,9 +26,11 @@ public class Reservation implements Serializable {
     @Column(name="nb_places")
     private int nb_places;
 
+
     @JsonIgnore
     @ManyToOne
     private User user;
+
 
     private Restaurant restaurant;
 
@@ -42,6 +44,13 @@ public class Reservation implements Serializable {
         this.user = user;
         this.restaurant = restaurant;
     }
+    public Reservation(int id_reservation, Date date_reservation, int nb_places) {
+        this.id_reservation = id_reservation;
+        this.date_reservation = date_reservation;
+        this.nb_places = nb_places;
+
+    }
+
 
     public int getId_reservation() {
         return id_reservation;

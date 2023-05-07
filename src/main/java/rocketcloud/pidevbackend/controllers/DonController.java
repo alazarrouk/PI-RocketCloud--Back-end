@@ -2,6 +2,7 @@ package rocketcloud.pidevbackend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import rocketcloud.pidevbackend.entities.Association;
 import rocketcloud.pidevbackend.entities.Don;
 import rocketcloud.pidevbackend.services.DonService;
 
@@ -28,11 +29,16 @@ public class DonController {
     public void Delete_Don(@PathVariable("id") Integer id ) {
         donService.Delete_Don(id);
     }
-    @PostMapping("/modifierPiste")
+    @PostMapping("/modifierdon")
     public void updatePiste(@RequestBody Don don)
     {
         donService.Update_Don(don);
 
+    }
+    @PostMapping ("/donproduit")
+
+    public void donproduit(@RequestBody Don D) {
+        donService.donproduit(D);
     }
 
 }
