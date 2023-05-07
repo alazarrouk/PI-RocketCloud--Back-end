@@ -116,8 +116,7 @@ public class User {
     @Column(nullable = true)
     @ManyToMany(cascade = CascadeType.ALL) //unidirictionnelle
     private Set<Recette> recettes;
-   public User() {
-    }
+
 
     public User(String username, String email, String password,String adresse,String fullname) {
         this.username = username;
