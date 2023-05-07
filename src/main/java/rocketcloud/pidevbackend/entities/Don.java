@@ -23,7 +23,7 @@ public class Don  implements Serializable {
     private float montant;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Produit> produits;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     User user;
 
     public Don() {

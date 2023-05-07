@@ -1,6 +1,5 @@
-package rocketcloud.pidevbackend.services.Interfaces;
+package rocketcloud.pidevbackend.services.interfaces;
 
-import rocketcloud.pidevbackend.entities.Commande;
 import rocketcloud.pidevbackend.entities.Don;
 
 import java.util.List;
@@ -13,6 +12,7 @@ public interface IDon {
 
     //remove
     void Delete_Don(Integer id);
+    public Don donproduit(Don don);
 
     //retrieve
     List<Don> Get_Dons();

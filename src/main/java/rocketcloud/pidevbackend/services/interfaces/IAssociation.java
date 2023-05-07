@@ -1,7 +1,6 @@
-package rocketcloud.pidevbackend.services.Interfaces;
+package rocketcloud.pidevbackend.services.interfaces;
 
 import rocketcloud.pidevbackend.entities.Association;
-import rocketcloud.pidevbackend.entities.Don;
 
 import java.util.List;
 
@@ -18,4 +17,5 @@ public interface IAssociation {
     List<Association> Get_Association();
     Association Get_Association(Integer id);
      void modifierAssociation(Association A);
+    List<Object[]> getStatAssociationsNbrDon();
 }

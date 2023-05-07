@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import rocketcloud.pidevbackend.entities.Association;
 import rocketcloud.pidevbackend.entities.Don;
 import rocketcloud.pidevbackend.repositories.AssociationRepository;
-import rocketcloud.pidevbackend.services.Interfaces.IAssociation;
+import rocketcloud.pidevbackend.services.interfaces.IAssociation;
 
 import java.util.List;
 @Service
@@ -45,5 +45,10 @@ public class AssociationService implements IAssociation {
     @Override
     public void modifierAssociation(Association association) {
          associationRepository.save(association);
+    }
+
+    @Override
+    public List<Object[]> getStatAssociationsNbrDon() {
+        return  associationRepository.getStatAssociationsNbrDon();
     }
 }

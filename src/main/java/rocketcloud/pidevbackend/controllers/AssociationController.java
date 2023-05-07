@@ -39,4 +39,8 @@ public class AssociationController {
     public void modifierAssociation(@RequestBody Association A) {
         associationService.modifierAssociation(A);
     }
+    @GetMapping("/chart")
+    public List<Object[]> chart(){
+        return associationService.getStatAssociationsNbrDon();
+    }
 }
