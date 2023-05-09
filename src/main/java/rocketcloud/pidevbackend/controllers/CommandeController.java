@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rocketcloud.pidevbackend.entities.Commande;
 import rocketcloud.pidevbackend.entities.Paiement;
+import rocketcloud.pidevbackend.entities.User;
 import rocketcloud.pidevbackend.services.CommandeService;
 import rocketcloud.pidevbackend.services.PaiementService;
+import rocketcloud.pidevbackend.services.iUserServiceImp;
 
 import java.util.List;
 import java.util.Set;
@@ -19,6 +21,8 @@ public class CommandeController {
     private CommandeService commandeService;
     @Autowired
     private PaiementService paiementService;
+    @Autowired
+    private iUserServiceImp userService;
 
     @PostMapping("/add")
     public Commande create_commande(@RequestBody Commande commande) {return commandeService.create_commande(commande);}
@@ -38,8 +42,11 @@ public class CommandeController {
     public Commande get_commande_by_paiement(@RequestBody Paiement paiement) {
          return commandeService.get_commande_by_paiement(paiement);
     }
-    @GetMapping("/get/user/date")
-    public List<Commande> get_commandes_by_user_and_date(){return commandeService.get_commandes();}
+    @GetMapping("/get/user/{id}")
+    public List<Commande> get_commandes_by_user(@PathVariable("id") Long id){
+        User user = userService.getUser(id).get();
+        return commandeService.get_commandes_by_user(user);
+    }
 
     @GetMapping("/get/stats/count/bystatus/{status}")
     public Integer get_count_commandes_by_status(@PathVariable("status") String status){

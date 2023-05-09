@@ -23,6 +23,8 @@ public interface PanierRepository extends CrudRepository<Panier, Integer> {
     @Query("SELECT p FROM Panier p WHERE p.user.id = :id AND p.produit.idProduit = :idProduit")
     Optional<Panier> findByUserIdAndProduitId(@Param("id") Long id, @Param("idProduit") Integer idProduit);
 
+
+
     List<Panier> findByUserId(Long id);
 
 

@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.springframework.lang.Nullable;
 
 import java.util.Date;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class Commande {
     @ManyToOne
     User user;
     @OneToOne
+    @Nullable
     private Paiement paiement;
     @ManyToMany(cascade = CascadeType.MERGE) //unidirictionnelle
     private Set<Produit> produits;

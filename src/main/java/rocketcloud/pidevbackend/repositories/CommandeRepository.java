@@ -14,7 +14,7 @@ import java.util.Set;
 
 public interface CommandeRepository extends JpaRepository<Commande,Integer> {
     List<Commande> findCommandeByDate(Date date);
-    List<Commande> findCommandeByUser(User user);
+    List<Commande> findCommandesByUserOrderByDateDesc(User user);
     List<Commande> findCommandeByUserAndDate(User user, Date date);
     Commande findCommandeByPaiement(Paiement paiement);
     @Query("SELECT count(c) FROM Commande c WHERE c.status = :status")

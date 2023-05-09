@@ -9,6 +9,7 @@ import rocketcloud.pidevbackend.entities.User;
 import rocketcloud.pidevbackend.repositories.CommandeRepository;
 import rocketcloud.pidevbackend.services.interfaces.ICommande;
 
+import javax.validation.constraints.Null;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -29,12 +30,13 @@ public class CommandeService implements ICommande {
     }
     @Override
     public Commande update_commande(Commande commande) {
-        commande.setStatus("annulée");
-         boolean check_refund=stripeService.refund_customer(commande.getPaiement().getPaymentIntent_id());
-         if (check_refund==true)
+         commande.setStatus("annulée");
+         String intent=commande.getPaiement().getPaymentIntent_id();
+         boolean check_refund=stripeService.refund_customer(intent);
+        /* if (check_refund==true)
              paiementService.delete_paiement(commande.getPaiement().getId_paiement());
-
-        return commandeRepository.save(commande);
+         commande.setPaiement(null);*/
+         return commandeRepository.save(commande);
     }
     @Override
     public void delete_commande(Integer id) {
@@ -55,7 +57,7 @@ public class CommandeService implements ICommande {
     @Override
     public List<Commande> get_commandes_by_date(Date date) {return (List<Commande>) commandeRepository.findCommandeByDate(date);}
     @Override
-    public List<Commande> get_commandes_by_user(User user) {return (List<Commande>) commandeRepository.findCommandeByUser(user);}
+    public List<Commande> get_commandes_by_user(User user) {return (List<Commande>) commandeRepository.findCommandesByUserOrderByDateDesc(user);}
     @Override
     public List<Commande> get_commandes_by_user_date(User user, Date date) {return (List<Commande>) commandeRepository.findCommandeByUserAndDate(user,date);}
     @Override
